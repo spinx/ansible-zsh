@@ -3,3 +3,6 @@ dependencies:
   - git
   - curl
   - zsh
+
+zsh_gist_url: https://gist.githubusercontent.com/spinx/0c15ec096d8002d612f5/raw/.zsh
+zsh_aliases_gist_url: https://gist.githubusercontent.com/spinx/40171f69596a74695641/raw/.zsh_aliases

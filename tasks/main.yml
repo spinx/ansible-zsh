@@ -29,15 +29,11 @@
   sudo: no 
 
 - name: Copy my .zshrc
-  command: curl -LSso ~/.zshrc https://raw.github.com/ChengLong/configs/master/.zshrc 
+  command: curl -LSso ~/.zshrc {{ zsh_gist_url }}
   sudo: no
 
 - name: Copy my .zsh_aliases 
-  command: curl -LSso ~/.zsh_aliases https://raw.github.com/ChengLong/configs/master/.zsh_aliases 
-  sudo: no
-
-- name: Copy my pygmalion.zsh-theme 
-  command: curl -LSso ~/.oh-my-zsh/themes/pygmalion.zsh-theme https://raw.github.com/ChengLong/configs/master/pygmalion.zsh-theme
+  command: curl -LSso ~/.zsh_aliases {{ zsh_aliases_gist_url }}
   sudo: no
 
 - name: Get zsh path
