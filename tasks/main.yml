@@ -29,11 +29,11 @@
   sudo: no 
 
 - name: Copy my .zshrc
-  command: curl -LSso ~/.zshrc {{ zsh_gist_url }}
+  get_url: url={{ zsh_gist_url }} dest=~/.zshrc
   sudo: no
 
 - name: Copy my .zsh_aliases 
-  command: curl -LSso ~/.zsh_aliases {{ zsh_aliases_gist_url }}
+  get_url: url={{ zsh_aliases_gist_url }} dest=~/.zsh_aliases
   sudo: no
 
 - name: Get zsh path
