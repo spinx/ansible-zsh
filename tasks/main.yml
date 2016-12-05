@@ -4,7 +4,7 @@
     name={{ item }}
     state=present
     update_cache=yes
-  with_items: dependencies
+  with_items: "{{ dependencies }}"
   sudo: yes
   when: ansible_os_family == "Debian"
 
