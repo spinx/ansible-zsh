@@ -5,7 +5,7 @@
     state=present
     update_cache=yes
   with_items: "{{ dependencies }}"
-  sudo: yes
+  become: true
   when: ansible_os_family == "Debian"
 
 - name: Install zsh (with dependencies)
@@ -18,23 +18,23 @@
 
 - name: Install oh-my-zsh
   git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
-  sudo: no 
+  become_user: "{{ansible_ssh_user}}"
 
 - name: Back up existing ~/.zshrc
   shell: if [ -f ~/.zshrc ]; then mv ~/.zshrc ~/.zshrc.bak ; fi
-  sudo: no 
+  become_user: "{{ansible_ssh_user}}"
 
 - name: Back up existing ~/.zsh_aliases
   shell: if [ -f ~/.zsh_aliases ]; then mv ~/.zsh_aliases ~/.zsh_aliases.bak ; fi
-  sudo: no 
+  become_user: "{{ansible_ssh_user}}"
 
 - name: Copy my .zshrc
   get_url: url={{ zsh_gist_url }} dest=~/.zshrc
-  sudo: no
+  become_user: "{{ansible_ssh_user}}"
 
 - name: Copy my .zsh_aliases 
   get_url: url={{ zsh_aliases_gist_url }} dest=~/.zsh_aliases
-  sudo: no
+  become_user: "{{ansible_ssh_user}}"
 
 - name: Get zsh path
   command: which zsh 
@@ -42,4 +42,4 @@
 
 - name: Switch to zsh
   user: name={{ansible_ssh_user}} shell={{ zsh_path.stdout }}
-  sudo: yes 
+  become: true
